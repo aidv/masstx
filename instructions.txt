@@ -1,0 +1,15 @@
+START A SERVER
+mtx -s -o /location/to/store/incoming/files
+
+
+
+START A CLIENT
+mtx -t <target IP> -i <folder to send>
+
+The -i and -o can be a path to a local folder or a remote folder.
+
+If you want to send from client to server:
+mtx -t <target IP> -i /local_fileSystem/contentToSend/
+
+If you want to send from server to client:
+mtx -t <target IP> -i /remote_filesystem/contentToSend/ -o /local_fileSystem/folderToStoreReceivedContent/
