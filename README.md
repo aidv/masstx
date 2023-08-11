@@ -26,15 +26,20 @@ Getting started is easy! Download MTX on the two machines that will be sending a
 One machine must be exposed to the internet, e.g an AWS VM. This would be our "public machine".
 
 ### 🌍 Starting the server
-On the publicly exposed machine, e.g your AWS VM, run MTX using the following command: `mtx -s -o /receivedFilesHere/`
+On the publicly exposed machine, e.g your AWS VM, run MTX using the following command:
+`mtx -s -o /receivedFilesHere/`
 
-You can set which port to listen to with the `-p` argument: `mtx -s -p 1234 -o /receivedFilesHere/`
-You can set where temporary folder should be located with the `-c` argument: `mtx -s -p 1234 -c /myTmpFolder -o /receivedFilesHere/`
+You can set which port to listen to with the `-p` argument:
+`mtx -s -p 1234 -o /receivedFilesHere/`
+You can set where temporary folder should be located with the `-c` argument:
+`mtx -s -p 1234 -c /myTmpFolder -o /receivedFilesHere/`
 
 ### 🖥 👉 🌍 Upload from Local to Remote
-On the local machine, set the input path as a Local path on your Local machine, and the output path as a Remote path on your Remote machine: `mtx -t 192.168.1.2 -i c:\localFolderToSend\`
+On the local machine, set the input path as a Local path on your Local machine, and the output path as a Remote path on your Remote machine:
+`mtx -t 192.168.1.2 -i c:\localFolderToSend\`
 
-Once transfer is complete, you can validate the data by using the `-v` argument: `mtx -t 192.168.1.2 -v -i c:\localFolderToSend\`
+Once transfer is complete, you can validate the data by using the `-v` argument:
+`mtx -t 192.168.1.2 -v -i c:\localFolderToSend\`
 
 
 ### 🖥 👈 🌍 Download from Remote to Local
