@@ -1,5 +1,7 @@
 # Mass-TX - The best file transfer tool for the people
 
+Precompiled
+Windows + MacOS + Linux: https://splitter.ai/vanillaFE/resources/mtx_0.29.zip
 
 ## 🌱 Simple
 - Send folders
@@ -10,9 +12,10 @@
 - Sends multiple files at once
 - Utilizes full network speed capacity
 
-## Safe
+## 🔒 Safe
 - No need to expose your network to the public
 - Can transfer both to or from target machine
+
 
 ## Description
 Mass TX, or MTX for short, is the best file transfer tool for ML/AI engineers, IT people, developers, and anyone who needs to transfer large amounts of data from one machine to another.
