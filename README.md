@@ -25,7 +25,8 @@ Simply start MTX in Server Mode on the publically exposed machine, e.g an AWS VM
 Getting started is easy! Download MTX on the two machines that will be sending and receiving data.
 One machine must be exposed to the internet, e.g an AWS VM. This would be our "public machine".
 
-### 🌍 On the public machine, e.g your AWS VM, run MTX using the following command: `mtx -s -o /receivedFilesHere/`
+### 🌍 Starting the server
+On the publicly exposed machine, e.g your AWS VM, run MTX using the following command: `mtx -s -o /receivedFilesHere/`
 
 You can set which port to listen to with the `-p` argument: `mtx -s -p 1234 -o /receivedFilesHere/`
 You can set where temporary folder should be located with the `-c` argument: `mtx -s -p 1234 -c /myTmpFolder -o /receivedFilesHere/`
