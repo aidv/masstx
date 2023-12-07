@@ -2,6 +2,7 @@ var fs = require('fs-extra')
 
 module.exports = class MTX_Core {
     constructor(opt){
+        this.initCommands()
     }
 
     sleep(delay = 1000){
@@ -82,5 +83,28 @@ module.exports = class MTX_Core {
 
 
         res.ok()
+    }
+
+
+    initCommands(){
+        this.commands = {}
+
+        var commandsRoot = __dirname + '/../commands/'
+        var files = fs.readdirSync(commandsRoot)
+        for (var i in files){
+            var cmdFile = files[i]
+            var cmdName = cmdFile.split('.')[0]
+
+            this.commands[cmdName] = new (require(commandsRoot + cmdFile))()
+        }
+    }
+
+
+    async on_command(req, res){
+        var cmd = this.commands[req.body.cmd]
+
+        if (!cmd) return res.send({error: 'invalid_command'})
+
+        await cmd.exec(req, res)
     }
 }
