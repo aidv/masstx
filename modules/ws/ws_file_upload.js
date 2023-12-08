@@ -40,6 +40,8 @@ module.exports = class WS_FileUpload {
             }
 
 
+            var startMS = Date.now()
+
             for (var i = 0; i < stats.size; i++){
                 var chunk = await this.getChunk({path: opt.filePath, pos: bufferPos})
                 i += chunk.length
@@ -86,12 +88,14 @@ module.exports = class WS_FileUpload {
                     }
                 }
 
+
                 var res = await this.sendChunk({
                     path: opt.filePath,
                     posRange: {start: bufferPos, chunkSize: chunk.length},
                     data: data
                 })
 
+                
                 /*if (res === 'goToNext'){
                     return resolve({status: true, completed: true})
                 }*/
@@ -100,6 +104,22 @@ module.exports = class WS_FileUpload {
                 
                 bufferPos += chunk.length
             }
+
+            var endMS = Date.now()
+
+            var progress = {
+                chunkSent: chunk.length,
+                totalSent: bufferPos + 1,
+                percent: parseFloat((((bufferPos + 1) / stats.size) * 100).toFixed(2)),
+                rate: MBDuringOneSecond,
+                rateTop: highestRate
+            }
+
+            if (opt.onProgress) opt.onProgress(progress)
+
+
+            mtx.dlog(`[WS File Uploader]  📄 ${filename}  Size: ${(stats.size / 1000000).toFixed(2)} MB    Time: ${endMS - startMS}ms`)
+
 
             try {
                 var finalData = {

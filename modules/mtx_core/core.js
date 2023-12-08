@@ -48,9 +48,24 @@ module.exports = class MTX_Core {
     on_getExisting(req, res){
         const { fdir } = require('fdir')
         
+        mtx.dlog('Getting existing files at ' + mtx.args.outputPath)
+
         var crawler = new fdir().withBasePath()
         var files = crawler.crawl(mtx.args.outputPath).sync()
-        for (var i = 0; i < files.length; i++) files[i] = files[i].split('\\').join('/').replace(mtx.args.outputPath, '')
+
+        mtx.dlog('Existing file count: ' + files.length)
+
+        var timestamp = Date.now()
+        for (var i = 0; i < files.length; i++){
+            if (Date.now() - timestamp > 1000){
+                timestamp = Date.now()
+                mtx.dlog(`Listed existing: ${i} of ${files.length}`)
+            }
+
+            files[i] = files[i].split('\\').join('/').replace(mtx.args.outputPath, '')
+        }
+
+        mtx.dlog('Existing files listed. Sending.')
 
         res.send({existing: files})
     }
@@ -87,6 +102,7 @@ module.exports = class MTX_Core {
 
 
     initCommands(){
+        /*
         this.commands = {}
 
         var commandsRoot = __dirname + '/../commands/'
@@ -96,6 +112,11 @@ module.exports = class MTX_Core {
             var cmdName = cmdFile.split('.')[0]
 
             this.commands[cmdName] = new (require(commandsRoot + cmdFile))()
+        }
+        */
+
+        this.commands = {
+            list_dir: new (require('../commands/list_dir.js'))()
         }
     }
 

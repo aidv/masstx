@@ -65,8 +65,7 @@ module.exports = class FileTransfer {
                 fileCount += this.list.lemgth
             }
 
-            //this.list = ['G:/datasets_fullband/clean/german_speech/CC_BY_SA_4.0_249hrs_339spk_German_Wikipedia_16k/data/German_Wikipedia_Asphalt_audio2_48kHz.wav']
-
+          
             /*********/
 
             await mtx.endpoint.post('stats', {count: this.list.length})

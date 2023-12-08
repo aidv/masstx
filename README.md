@@ -28,6 +28,32 @@ Simply start MTX in Server Mode on the publically exposed machine, e.g an AWS VM
 Getting started is easy! Download MTX on the two machines that will be sending and receiving data.
 One machine must be exposed to the internet, e.g an AWS VM. This would be our "public machine".
 
+### Arguments
+
+.option('-p, --port <number>', 'Port. Default 5487', 5487)
+    .option('-s, --asServer', 'Start as a server, rather than a client.')
+    .option('-t, --target <type>', 'That server to connect to')
+    
+    .option('-i, --inputPath <type>', 'The path to send to target')
+    .option('-o, --outputPath <type>', 'The target path where to store the files')
+    .option('-f, --forceRemote', 'For debug purposes')
+    .option('-w, --workers <number>', 'How many concurrent upload streams to allow. Default is 20. More is not necessarily better.', 20)
+    .option('-c, --tempFolder <type>', 'Temporary folder path')
+    .option('-v, --validate', 'Validate local and remote files using CRC checksum')
+
+
+
+| Argument | Description    | Usage    |
+| :---:   | :---: | :---: |
+| -d | Debug / Verbose. Prints info while operating    | ./mtx -d   |
+| -s | Server mode. Start MTX as a server.    | ./mtx -s   |
+| -t | Target. Defines the remote server to connect to.    | ./mtx -t 192.168.1.2   |
+| -i | Input path. Defines which folder to send.    | ./mtx -i <path to folder>   |
+| -o | Output path. Defines which folder to store the data in.    | ./mtx -o <path to target folder>   |
+| -w | Worker count. Default is 20. Defines how many transfer workers to use. Depending on the network speed this number can be lower or higher. 20 is usually fine.  | ./mtx -w 5   |
+| -c | Temporary folder path. Defines the path where to temporarily store the incoming data for the running MTX session. Use this when running multiple instances of MTX.    | ./mtx -c <path to temporary folder>   |
+| -v | Validate data only. Tells both server and client to only validate data, and not to do any actual data transfer.    | ./mtx -v   |
+
 ### 🌍 Starting the server
 On the publicly exposed machine, e.g your AWS VM, run MTX using the following command:
 
