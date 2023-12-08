@@ -30,19 +30,6 @@ One machine must be exposed to the internet, e.g an AWS VM. This would be our "p
 
 ### Arguments
 
-.option('-p, --port <number>', 'Port. Default 5487', 5487)
-    .option('-s, --asServer', 'Start as a server, rather than a client.')
-    .option('-t, --target <type>', 'That server to connect to')
-    
-    .option('-i, --inputPath <type>', 'The path to send to target')
-    .option('-o, --outputPath <type>', 'The target path where to store the files')
-    .option('-f, --forceRemote', 'For debug purposes')
-    .option('-w, --workers <number>', 'How many concurrent upload streams to allow. Default is 20. More is not necessarily better.', 20)
-    .option('-c, --tempFolder <type>', 'Temporary folder path')
-    .option('-v, --validate', 'Validate local and remote files using CRC checksum')
-
-
-
 | Argument | Description    | Usage    |
 | :---:   | :---: | :---: |
 | -d | Debug / Verbose. Prints info while operating    | ./mtx -d   |
