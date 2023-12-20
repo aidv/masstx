@@ -176,7 +176,7 @@ module.exports = class FileTransfer {
                     .catch(err => {
                         if (err.error === 'invalid_output_path'){
                             process.exit(null, 'Remote output path does not exist. Start MTX with the -o <output path> flag on the REMOTE machine.')
-                        }0
+                        }
                         this.cancel()
                         var x = 0
                     })

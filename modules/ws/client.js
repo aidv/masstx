@@ -1,5 +1,6 @@
 var fs = require('fs')
 const socket = require('socket.io-client')
+const MTX_Cmd = require('../commands/list_dir.js')
 
 module.exports = class WebClient extends WS_Root {
     constructor(opt){
@@ -13,8 +14,8 @@ module.exports = class WebClient extends WS_Root {
             var cleanURL = 'ws://' + url.replace('http://', '').replace('https://', '').replace('ws://', '').split('/')[0]
             this.endpoint = socket.connect(cleanURL, {
                 maxHttpBufferSize: 100000000,
-                pingInterval: 60000,
-                pingTimeout: 60000,
+                pingInterval: 25000,
+                pingTimeout: 120000,
                 upgradeTimeout: 30000
             })
             
@@ -27,10 +28,15 @@ module.exports = class WebClient extends WS_Root {
             this.endpoint.on('disconnect', reason => {
                 console.error('[ERROR] Disconnected. Reason: ' + reason)
                 this.__connected = false
+                process.exit()
             })
 
             this.endpoint.on('error', (_a, _b, _c, _d)=>{
-                var x = 0
+                mtx.dlog('[WS ERROR] ')
+                mtx.dlog(_a)
+                mtx.dlog(_b)
+                mtx.dlog(_c)
+                mtx.dlog(_d)
             })
             
 

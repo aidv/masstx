@@ -12,8 +12,8 @@ module.exports = class WebServer extends WS_Root  {
 
         this.socket = require('socket.io')({
             maxHttpBufferSize: 100000000,
-            pingInterval: 60000,
-            pingTimeout: 60000,
+            pingInterval: 120000,
+            pingTimeout: 120000,
             upgradeTimeout: 30000
         })
         
@@ -25,7 +25,11 @@ module.exports = class WebServer extends WS_Root  {
             this.endpoint = client
 
             
-            this.__ws_fileUpload = new (require('./ws_file_upload.js'))({endpoint: this.endpoint, receiver: true, parent: this})
+            this.__ws_fileUpload = new (require('./ws_file_upload.js'))({
+                endpoint: this.endpoint,
+                receiver: true,
+                parent: this
+            })
 
             for (var route in this.routes) this.captureRoute(this.routes[route])
 
